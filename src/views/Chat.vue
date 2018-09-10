@@ -13,9 +13,7 @@
 
     <div class="footer">
       <input class="footer-input" v-model="message" placeholder="message">
-      <div class="footer-btn">
-        <button v-on:click="addMessageChat">Send</button>
-      </div>
+      <button class="footer-btn" v-on:click="addMessageChat">Send</button>
     </div>
   </div>
 </template>
@@ -89,7 +87,7 @@ export default {
   .content {
     overflow: auto;
     overscroll-behavior-y: contain;
-    height: calc(100% - 120px);
+    height: calc(100% - 117px);
   }
   .message {
     display: flex;
@@ -119,10 +117,7 @@ export default {
     height: 50px;
     display: flex;
     width: 100%;
-    padding: 5px 10px;
     justify-content: center;
-    align-items: center;
-    /* flex-direction: row; */
   }
   .footer-input {
     flex: 3;
@@ -131,14 +126,14 @@ export default {
     border-radius: 5px;
     border: 1px solid #c5c5c5;
     outline: none;
+    margin-left: 10px;
   }
   .footer-btn {
     flex: 1;
-    height: 46px;
-  }
-  button {
-    height: 46px;
-    width: 70%;
+    margin-right: 10px;
+    height: 44px;
+    width: calc(100% - 10px);
+    margin-left: 10px;
     border-radius: 5px;
     border: 1px solid #c5c5c5;
     outline: none;
