@@ -118,6 +118,7 @@ export default {
     display: flex;
     width: 100%;
     justify-content: center;
+    overflow: hidden;
   }
   .footer-input {
     flex: 3;
