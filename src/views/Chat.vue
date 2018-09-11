@@ -11,7 +11,7 @@
       </div>        
     </div>
 
-    <div class="footer">
+    <div class="footer" ref='ps-footer-view'>
       <input class="footer-input" v-model="message" placeholder="message">
       <button class="footer-btn" v-on:click="addMessageChat">Send</button>
     </div>
@@ -45,7 +45,22 @@ export default {
     }
   },
   mounted () {
+    console.log('-----')
     this.$nextTick(() => {
+      this.$refs['ps-footer-view'].addEventListener('touchmove', (e) => {
+        console.log('-1-')
+        e.preventDefault()
+      })      
+
+      this.$refs['ps-messages-view'].addEventListener('touchmove', (e) => {
+        console.log('2',)
+        const currentScrollTop = this.$refs['ps-messages-view'].scrollTop
+        const maxScrollTop = this.$refs['ps-messages-view'].scrollHeight - this.$refs['ps-messages-view'].clientHeight
+        if (currentScrollTop > maxScrollTop) {
+          e.preventDefault()
+        }
+      })
+
       window.addEventListener('resize', () => {
         this.$refs['ps-messages-view'].scrollTop = this.$refs['ps-messages-view'].scrollHeight
       })
@@ -93,7 +108,7 @@ export default {
     display: flex;
     min-height: 75px;
     align-items: center;
-    padding: 10px 0;
+    padding: 10px 0;    
   }
   .left {
     margin: 10px;
@@ -118,26 +133,29 @@ export default {
     display: flex;
     width: 100%;
     justify-content: center;
-    overflow: hidden;
+    padding-bottom: 10px;
+    overflow: hidden !important;
   }
   .footer-input {
     flex: 3;
     padding-left: 10px;
-    height: 40px;
     border-radius: 5px;
     border: 1px solid #c5c5c5;
     outline: none;
     margin-left: 10px;
+    -webkit-appearance: none;
+    height: 100%;
+    box-sizing: border-box;
   }
   .footer-btn {
     flex: 1;
-    margin-right: 10px;
-    height: 44px;
+    margin-right: 10px;    
     width: calc(100% - 10px);
     margin-left: 10px;
     border-radius: 5px;
     border: 1px solid #c5c5c5;
     outline: none;
+    height: 100%;
   }
   .scroll-area {
     position: relative;
