@@ -45,18 +45,15 @@ export default {
     }
   },
   mounted () {
-    console.log('-----')
     this.$nextTick(() => {
       this.$refs['ps-footer-view'].addEventListener('touchmove', (e) => {
-        console.log('-1-')
         e.preventDefault()
       })      
 
       this.$refs['ps-messages-view'].addEventListener('touchmove', (e) => {
-        console.log('2',)
         const currentScrollTop = this.$refs['ps-messages-view'].scrollTop
         const maxScrollTop = this.$refs['ps-messages-view'].scrollHeight - this.$refs['ps-messages-view'].clientHeight
-        if (currentScrollTop > maxScrollTop) {
+        if (currentScrollTop > maxScrollTop || currentScrollTop < 0) {
           e.preventDefault()
         }
       })
@@ -156,12 +153,6 @@ export default {
     border: 1px solid #c5c5c5;
     outline: none;
     height: 100%;
-  }
-  .scroll-area {
-    position: relative;
-    margin: auto;
-    width: 400px;
-    height: 300px;
   }
 </style>
 
